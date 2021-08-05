@@ -7,7 +7,8 @@ function App() {
   const [options, setOptions] = useState([]);
   const [firstName, setFirstName] = useState("")
   const [state, setSubmittedState] = useState("")
-
+  
+ //fetching states
   useEffect(() => {
       const url = "https://cdn-api.co-vin.in/api/v2/admin/location/states";
 
@@ -28,7 +29,8 @@ function App() {
 
       fetchData();
   }, []);
-
+ 
+  //handle submitted data
   const { control,  handleSubmit, formState: { errors } } = useForm();
   const onSubmit = data => {
     setFirstName(data?.firstName)
@@ -51,7 +53,7 @@ function App() {
         render={({ field }) => <input {...field} />}
       />
       </label>
-      <p>{errors.firstName && "Name must not contain numbers and special characers"}</p> 
+      <p>{errors.firstName && "Name must not contain numbers and special characters"}</p> 
 
       <label>State
       <Controller
@@ -71,6 +73,7 @@ function App() {
      {firstName !== "" && state !== "" ? <h3> Submitted data is:</h3>: <div></div>}   
      {firstName !== "" ?<span>Name:  {firstName}</span> : ""} <br/>
      {state !== "" && state !== undefined ? <span>State:  {state}</span>: ""}
+
     </div>
   );
 }
